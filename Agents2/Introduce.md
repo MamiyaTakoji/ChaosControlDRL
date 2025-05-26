@@ -1,0 +1,1 @@
+Due to a design oversight, the grid_range parameter cannot be dynamically modified. The agents in this folder are identical to those in the Agent folder except for having grid_range set to [-1,1].
