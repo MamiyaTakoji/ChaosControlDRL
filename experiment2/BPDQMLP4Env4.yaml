@@ -1,0 +1,92 @@
+dl_toolbox: "torch"  # The deep learning toolbox. Choices: "torch", "mindspore", "tensorflow"
+
+project_name: "XuanCe_Benchmark"
+logger: "tensorboard"  # Choices: "tensorboard", "wandb".
+wandb_user_name: "your_user_name"
+
+parallels: 10
+env_seed: 2910
+render: True
+render_mode: 'rgb_array' # Choices: 'human', 'rgb_array'.
+test_mode: False
+test_steps: 2000
+distributed_training: False
+fps: 30
+seed: 0
+
+device: "cuda:0"
+
+
+agent: "PBDQ"
+env_name: "ChaosControl"
+env_id: "Platform-v0"
+env_seed: 1
+max_episode_steps: 200
+vectorize: "DummyVecEnv"
+render: False
+learner: "PDQN_Learner"
+policy: "PBDQ_Policy"
+representation: "HybirdBlock"
+runner: "DRL"
+
+#representation_hidden_size: [64]
+
+conactor_hidden_size: [256,128]
+conactor_block_type: [M,M,M]
+conactor_kan_configId: [0,]
+conactor_kan_grid_sizeValue: [5,]
+conactor_kan_spline_order_Value: [3,]
+
+disc_actionValueNet_hidden_sizes: [1024,1024]
+disc_action_value_block_type: ['M','M','M']
+disc_action_value_kan_configId: [0,1,]
+disc_action_value_kan_grid_sizeValue: [5,5,]
+disc_action_value_kan_spline_order_Value: [3,3,]
+
+stateValueNet_hidden_sizes: [1024,1024]
+state_value_block_type: ['M','M','M']
+state_value_kan_configId: [0,1,]
+state_value_kan_grid_sizeValue: [5,5,]
+state_value_kan_spline_order_Value: [3,3,]
+
+representation_hidden_size: [1024,]
+representation_block_type: ['M',]
+representation_kan_configId: [0,]
+representation_kan_grid_sizeValue: [5,]
+representation_kan_spline_order_Value: [3,]
+
+activationMLP: 'relu'
+activationKAN: 'relu'
+activation_action: 'tanh'
+
+buffer_size: 400000
+batch_size: 2560
+learning_rate: 0.002
+gamma: 0.9999
+tau: 0.005
+
+start_greedy: 1
+end_greedy: 0.01
+decay_step_greedy: 3000000  # 1M
+start_noise: 1
+end_noise: 0.01
+training_frequency: 300
+running_steps: 3200000
+start_training: 1000
+
+test_steps: 10000
+eval_interval: 1000
+test_episode: 5
+grid_size: 10
+spline_order: 3
+
+use_grad_clip: False  # gradient normalization
+grad_clip_norm: 0.5
+use_actions_mask: False
+use_obsnorm: False
+use_rewnorm: False
+obsnorm_range: 5
+rewnorm_range: 5
+
+log_dir: "./logs/pbdq/"
+model_dir: "./models/pbdq/"
